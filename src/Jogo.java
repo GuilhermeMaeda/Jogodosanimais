@@ -120,9 +120,9 @@ public class Jogo {
 			    	  } else {
 			    	  No no = new No();
 			  		  no.answer = JOptionPane.showInputDialog("Em que animal você pensou?");
-			  		  no.value = JOptionPane.showInputDialog("Um(a) " + no.answer + "_________, mas um Tubarão não!");
-			  		  tree.root.left = no;
-			  		  
+			  		  no.value = "O animal que você pensou "
+							+ JOptionPane.showInputDialog("Um(a) " + no.answer + " _____ mas um tubarão não.")
+							+ "?";
 			    	  }
 			        }
 		} else {
@@ -135,7 +135,9 @@ public class Jogo {
 		    	  } else {
 		    		  No no = new No();
 		    		  no.answer = JOptionPane.showInputDialog("Em que animal você pensou?");
-		    		  no.value = JOptionPane.showInputDialog("Um(a) " + no.answer + "_________, mas um Macaco não!");
+		    		  no.value = "O animal que você pensou "
+								+ JOptionPane.showInputDialog("Um(a) " + no.answer + " _____ mas um tubarão não.")
+								+ "?";
 		    		  tree.root.right = no;
 		    		  
 		    	   }
