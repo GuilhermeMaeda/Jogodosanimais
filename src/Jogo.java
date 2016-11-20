@@ -17,6 +17,9 @@ public class Jogo {
 	
 	static JTextField jtfAnimal;
 	
+	static Tree tree = new Tree();
+	
+	static JButton pensei;
 	
 	public static void main(String[] args) {
 	      Tela();
@@ -37,106 +40,109 @@ public class Jogo {
 		pergunta.setFont(letra);
 		pergunta.setBounds(75, 0, 150, 50);
 		
-		JButton pensei = new JButton ("Pensei");
+		pensei = new JButton ("Pensei");
 		jfWindow.add(pensei);
 		pensei.setBounds(95,50,100,30);
 		
-		pensei.addActionListener(new ActionListener() {
-			
-
-			public void actionPerformed(ActionEvent e) {
-				jfWindow.setVisible(false);
-				No.root = "O animal que você pensou vive na água?";
+		
+				No no = new No();
+				tree.root = no;
+				no.value = "O animal que vocÃª pensou vive na Ã¡gua?";
 				Buttonaction();
-			}
-		});
 	}
 	
-	public static void advinha(No tree, String Animal){
-		if (JOptionPane.showConfirmDialog(null, No.newAnimal, "Advinhar animal", JOptionPane.YES_NO_OPTION,
+	public static void adivinar(No raÃ­z, String Animal){
+		if (JOptionPane.showConfirmDialog(null, raÃ­z.value, "Jogo dos animais", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-			Animal = No.answer;
-			if (No.esquerda !=null){
-				advinha(No.esquerda, Animal);
-			} else{
-				if (JOptionPane.showConfirmDialog(null, "O animal que você pensou é o " + Animal + "?",
-						"Jogo dos animais", JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 
-					JOptionPane.showMessageDialog(null, "Acertei novamente!");
-					Tela();
-				} else {
-
-					No no = new No();
-					No.answer = JOptionPane.showInputDialog("Qual é o animal que você pensou?");
-					//No.newAnimal = JOptionPane.showInputDialog("Um(a) " + No.answer + "_________, mas um "+ Animal + " não!");
-					no.valor = "O animal que você pensou "
-							+ JOptionPane.showInputDialog("Um(a) " + no.newAnimal + " _____ mas um " + Animal + " não.")
-							+ "?";
-					No.esquerda = no;
-
-				}
-			}
-		} else {
-			if (tree.direita != null) {
-				advinha(tree.direita, Animal);
+			Animal = raÃ­z.answer;
+			if (raÃ­z.left != null) {
+				adivinar(raÃ­z.left, Animal);
 
 			} else {
-				if (JOptionPane.showConfirmDialog(null, "O animal que você pensou é o " + Animal + "?",
+				if (JOptionPane.showConfirmDialog(null, "O animal que vocÃª pensou Ã© o " + Animal + "?",
 						"Jogo dos animais", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 
 					JOptionPane.showMessageDialog(null, "Acertei novamente!");
-					Tela();
 				} else {
 
 					No no = new No();
-					no.answer = JOptionPane.showInputDialog("Qual é o animal que você pensou?");
-					No.newAnimal = JOptionPane.showInputDialog("Um(a) " + No.answer + "_________, mas um "+ Animal + " não!");
+					no.answer = JOptionPane.showInputDialog("Em que animal vocÃª pensou?");
+					no.value = "O animal que vocÃª pensou "
+							+ JOptionPane.showInputDialog("Um(a) " + no.answer + " _____ mas um " + Animal + " nÃ£o.")
+							+ "?";
 
-					tree.direita = no;
+					raÃ­z.left = no;
 
 				}
 			}
+
+		} else {
+
+			if (raÃ­z.right!= null) {
+				adivinar(raÃ­z.right, Animal);
+
+			} else {
+				if (JOptionPane.showConfirmDialog(null, "O animal que vocÃª pensou Ã© o " + Animal + "?",
+						"Jogo dos animais", JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+
+					JOptionPane.showMessageDialog(null, "Acertei de novo!");
+				} else {
+
+					No no = new No();
+					no.answer = JOptionPane.showInputDialog("Em que animal vocÃª pensou?");
+					no.value = "O animal que vocÃª pensou "
+							+ JOptionPane.showInputDialog("Um(a) " + no.answer + " _____ mas um " + Animal + " nÃ£o.")
+							+ "?";
+
+					raÃ­z.right = no;
+
+				}
+			}
+
 		}
 		
 	}
 	static void Buttonaction(){
-		if (JOptionPane.showConfirmDialog(null, No.root, "Jogo dos Animais",
+		pensei.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		if (JOptionPane.showConfirmDialog(null, tree.root.value, "Jogo dos Animais",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-			      if(No.esquerda!=null){
-			    	  advinha(No.esquerda,"Tubarão");
+			      if(tree.root.left!=null){
+			    	  adivinar(tree.root.left,"TubarÃ£o");
 			      } else {
-			    	  int shark = JOptionPane.showConfirmDialog(null, "O animal que você pensou é o Tubarão?");
+			    	  int shark = JOptionPane.showConfirmDialog(null, "O animal que vocÃª pensou Ã© o TubarÃ£o?");
 			    	  if(shark == JOptionPane.YES_OPTION){
-			    		  JOptionPane.showMessageDialog(null, "Acertei novamente!");
-			    		  Tela();
+			    		  JOptionPane.showMessageDialog(null, "Acertei de novo!");
+			    		  //Tela();
 			    	  } else {
 			    	  No no = new No();
-			  		  No.answer = JOptionPane.showInputDialog("Em que animal você pensou?");
-			  		  No.newAnimal = JOptionPane.showInputDialog("Um(a) " + No.answer + "_________, mas um Tubarão não!");
-			  		  No.esquerda = no;
-			  		  Tela(); 
+			  		  no.answer = JOptionPane.showInputDialog("Em que animal vocÃª pensou?");
+			  		  no.value = JOptionPane.showInputDialog("Um(a) " + no.answer + "_________, mas um TubarÃ£o nÃ£o!");
+			  		  tree.root.left = no;
+			  		  
 			    	  }
 			        }
 		} else {
-			if(No.direita!=null){
-		    	  advinha(No.direita,"Macaco");
+			if(tree.root.right!=null){
+		    	  adivinar(tree.root.right,"Macaco");
 		      } else {
-		    	  int monkey = JOptionPane.showConfirmDialog(null, "O animal que você pensou é o Macaco?");
+		    	  int monkey = JOptionPane.showConfirmDialog(null, "O animal que vocÃª pensou Ã© o Macaco?");
 		    	  if(monkey == JOptionPane.YES_OPTION){
-		    		  JOptionPane.showMessageDialog(null, "Acertei novamente!");
-		    		  Tela();
+		    		  JOptionPane.showMessageDialog(null, "Acertei de novo!");
 		    	  } else {
 		    		  No no = new No();
-		    		  No.answer = JOptionPane.showInputDialog("Em que animal você pensou?");
-		    		  No.newAnimal = JOptionPane.showInputDialog("Um(a) " + No.answer + "_________, mas um Macaco não!");
-		    		  No.direita = no;
-		    		  Tela();
-		    	  }
-		        }
-		}
-			
-	}
+		    		  no.answer = JOptionPane.showInputDialog("Em que animal vocÃª pensou?");
+		    		  no.value = JOptionPane.showInputDialog("Um(a) " + no.answer + "_________, mas um Macaco nÃ£o!");
+		    		  tree.root.right = no;
+		    		  
+		    	   }
+		         }
+		       }
+			}
+		});
+  }
 }
 
