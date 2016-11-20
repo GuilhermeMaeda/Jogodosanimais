@@ -17,7 +17,7 @@ public class Jogo {
 	
 	static JTextField jtfAnimal;
 	
-	static Tree tree = new Tree();
+	static No root = new No();
 	
 	static JButton pensei;
 	
@@ -46,7 +46,7 @@ public class Jogo {
 		
 		
 				No no = new No();
-				tree.root = no;
+				root = no;
 				no.value = "O animal que você pensou vive na água?";
 				Buttonaction();
 	}
@@ -60,7 +60,7 @@ public class Jogo {
 				adivinar(raíz.left, Animal);
 
 			} else {
-				if (JOptionPane.showConfirmDialog(null, "O animal que você pensou é o " + Animal + "?",
+				if (JOptionPane.showConfirmDialog(null, "O animal que você pensou é o(a) " + Animal + "?",
 						"Jogo dos animais", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 
@@ -108,10 +108,10 @@ public class Jogo {
 	static void Buttonaction(){
 		pensei.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		if (JOptionPane.showConfirmDialog(null, tree.root.value, "Jogo dos Animais",
+		if (JOptionPane.showConfirmDialog(null, root.value, "Jogo dos Animais",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-			      if(tree.root.left!=null){
-			    	  adivinar(tree.root.left,"Tubarão");
+			      if(root.left!=null){
+			    	  adivinar(root.left,"Tubarão");
 			      } else {
 			    	  int shark = JOptionPane.showConfirmDialog(null, "O animal que você pensou é o Tubarão?");
 			    	  if(shark == JOptionPane.YES_OPTION){
@@ -120,14 +120,13 @@ public class Jogo {
 			    	  } else {
 			    	  No no = new No();
 			  		  no.answer = JOptionPane.showInputDialog("Em que animal você pensou?");
-			  		  no.value = "O animal que você pensou "
-							+ JOptionPane.showInputDialog("Um(a) " + no.answer + " _____ mas um tubarão não.")
-							+ "?";
+			  		  no.value = "O animal que você pensou " + JOptionPane.showInputDialog("Um(a) " + no.answer + " _____ mas um tubarão não.")+ "?";
+			  		  root.left = no;
 			    	  }
 			        }
 		} else {
-			if(tree.root.right!=null){
-		    	  adivinar(tree.root.right,"Macaco");
+			if(root.right!=null){
+		    	  adivinar(root.right,"Macaco");
 		      } else {
 		    	  int monkey = JOptionPane.showConfirmDialog(null, "O animal que você pensou é o Macaco?");
 		    	  if(monkey == JOptionPane.YES_OPTION){
@@ -135,10 +134,8 @@ public class Jogo {
 		    	  } else {
 		    		  No no = new No();
 		    		  no.answer = JOptionPane.showInputDialog("Em que animal você pensou?");
-		    		  no.value = "O animal que você pensou "
-								+ JOptionPane.showInputDialog("Um(a) " + no.answer + " _____ mas um tubarão não.")
-								+ "?";
-		    		  tree.root.right = no;
+		    		  no.value = "O animal que você pensou "+ JOptionPane.showInputDialog("Um(a) " + no.answer + " _____ mas um macaco não.")+ "?";
+		    		  root.right = no;
 		    		  
 		    	   }
 		         }
