@@ -68,7 +68,7 @@ public class Jogo {
 				} else {
 
 					No no = new No();
-					no.answer = JOptionPane.showInputDialog("Em que animal você pensou?");
+					no.answer = JOptionPane.showInputDialog(null, "Em que animal você pensou?", "Desisto!",JOptionPane.QUESTION_MESSAGE);
 					no.value = "O animal que você pensou "
 							+ JOptionPane.showInputDialog("Um(a) " + no.answer + " _____ mas um " + Animal + " não.")
 							+ "?";
@@ -92,7 +92,7 @@ public class Jogo {
 				} else {
 
 					No no = new No();
-					no.answer = JOptionPane.showInputDialog("Em que animal você pensou?");
+					no.answer = JOptionPane.showInputDialog(null, "Em que animal você pensou?", "Desisto!",JOptionPane.QUESTION_MESSAGE);
 					no.value = "O animal que você pensou "
 							+ JOptionPane.showInputDialog("Um(a) " + no.answer + " _____ mas um " + Animal + " não.")
 							+ "?";
@@ -119,7 +119,7 @@ public class Jogo {
 			    		  //Tela();
 			    	  } else {
 			    	  No no = new No();
-			  		  no.answer = JOptionPane.showInputDialog("Em que animal você pensou?");
+			  		  no.answer = JOptionPane.showInputDialog(null, "Em que animal você pensou?", "Desisto!",JOptionPane.QUESTION_MESSAGE);
 			  		  no.value = "O animal que você pensou " + JOptionPane.showInputDialog("Um(a) " + no.answer + " _____ mas um tubarão não.")+ "?";
 			  		  root.left = no;
 			    	  }
@@ -133,7 +133,7 @@ public class Jogo {
 		    		  JOptionPane.showMessageDialog(null, "Acertei de novo!");
 		    	  } else {
 		    		  No no = new No();
-		    		  no.answer = JOptionPane.showInputDialog("Em que animal você pensou?");
+		    		  no.answer = JOptionPane.showInputDialog(null, "Em que animal você pensou?", "Desisto!",JOptionPane.QUESTION_MESSAGE);
 		    		  no.value = "O animal que você pensou "+ JOptionPane.showInputDialog("Um(a) " + no.answer + " _____ mas um macaco não.")+ "?";
 		    		  root.right = no;
 		    		  
